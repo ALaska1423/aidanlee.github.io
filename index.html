@@ -1,1 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineer Portfolio | Aidan Lee</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Load Oswald (for strong headings) and Inter (for body) fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    
+    <!-- Configure Tailwind for custom colors and font -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'titanium-dark': '#121212', // Near black / Dark Gunmetal
+                        'titanium-gray': '#1E1E1E', // Section background
+                        'brake-red': '#FF3333',     // Vivid Ceramic Red Accent
+                        'text-light': '#E0E0E0',    // Off-white for main text
+                    },
+                    fontFamily: {
+                        // Oswald for large, impactful headings
+                        heading: ['Oswald', 'sans-serif'],
+                        // Inter for highly readable body text
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Apply smooth scrolling behavior */
+        html {
+            scroll-behavior: smooth;
+        }
 
+        /* 1. Navigation Link Hover State (Precise Machining Line) */
+        .nav-link {
+            position: relative;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px; /* Adjust distance from text */
+            width: 100%;
+            height: 2px; /* Thin line */
+            background-color: transparent;
+            transform: scaleX(0);
+            transition: transform 0.3s ease-out, background-color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #FF3333; /* brake-red */
+        }
+        .nav-link:hover::after {
+            background-color: #FF3333; /* brake-red underline */
+            transform: scaleX(1);
+        }
+
+        /* 2. Hero CTA Button Bevel & Hover (Crisp, High-Contrast) */
+        .cta-button {
+            /* Initial Bevel using subtle box-shadows */
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 1px 3px rgba(0, 0, 0, 0.7);
+            border: 2px solid #FF3333; /* Ceramic Red Border */
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #FF3333; /* Ceramic Red Fill */
+            color: #121212; /* Dark text on hover */
+            box-shadow: 0 0 15px rgba(255, 51, 51, 0.6); /* Subtle glow */
+        }
+
+        /* 3. Project Card Hover Effect (Red Glow/Border) */
+        .project-card {
+            transition: all 0.3s ease;
+            border: 1px solid #333; /* Subtle border for definition */
+            /* Sharp edges */
+            border-radius: 0; 
+        }
+        .project-card:hover {
+            border-color: #FF3333; /* Red border on hover */
+            /* Stronger glow effect */
+            box-shadow: 0 0 15px rgba(255, 51, 51, 0.5); 
+            transform: translateY(-3px);
+        }
+
+        /* 4. Fixed Header Appearance */
+        .fixed-header {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.7);
+            background-color: rgba(18, 18, 18, 0.95); /* Near black, slight transparency */
+        }
+
+        /* Utility to use the Oswald font */
+        .font-heading {
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body class="bg-titanium-dark font-sans text-text-light">
+
+    <!-- 1. Header and Navigation -->
+    <header id="home" class="fixed-header sticky top-0 z-50 py-3">
+        <div class="container mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8">
+            <h1 class="text-2xl font-bold font-heading text-brake-red">
+                <a href="#home" class="hover:opacity-80 transition duration-300">
+                    A. LEE ENGINEERING
+                </a>
+            </h1>
+            <nav class="hidden md:flex space-x-10">
+                <!-- Applied 'nav-link' class for custom underline hover effect -->
+                <a href="#projects" class="nav-link text-lg font-medium text-text-light">PROJECTS</a>
+                <a href="#about" class="nav-link text-lg font-medium text-text-light">PROFILE</a>
+                <a href="#contact" class="nav-link text-lg font-medium text-text-light">CONTACT</a>
+            </nav>
+            
+            <!-- Mobile Menu Button (Hamburger) -->
+            <button id="mobile-menu-button" class="md:hidden text-text-light hover:text-brake-red focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-titanium-dark mt-4 border-t border-gray-700">
+            <a href="#projects" class="block py-3 px-4 text-lg text-text-light hover:bg-titanium-gray hover:text-brake-red" onclick="toggleMobileMenu()">PROJECTS</a>
+            <a href="#about" class="block py-3 px-4 text-lg text-text-light hover:bg-titanium-gray hover:text-brake-red" onclick="toggleMobileMenu()">PROFILE</a>
+            <a href="#contact" class="block py-3 px-4 text-lg text-text-light hover:bg-titanium-gray hover:text-brake-red" onclick="toggleMobileMenu()">CONTACT</a>
+        </div>
+    </header>
+
+    <main class="pt-16"> <!-- Padding to account for fixed header -->
+
+        <!-- 2. Hero Section -->
+        <section class="bg-titanium-dark py-28 md:py-40 border-b border-dashed border-gray-700">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="max-w-5xl mx-auto">
+                    <!-- 5. Typography: Bold, White Headline (Oswald) -->
+                    <h2 class="text-5xl sm:text-7xl font-extrabold font-heading text-text-light mb-4 leading-none">
+                        ENGINEERING PORTFOLIO.
+                    </h2>
+                    <!-- Sub-headline -->
+                    <p class="text-xl sm:text-2xl font-light text-gray-400 mb-10 mt-4">
+                        Mechanical Design | CAD/CAM | Python | Microcontrollers.
+                    </p>
+                    <!-- 2. Call to Action Button (Beveled, Red Border) -->
+                    <a href="#projects" class="cta-button inline-block bg-titanium-dark text-text-light font-bold py-3 px-10 rounded-none shadow-xl text-lg transform hover:scale-[1.02]">
+                        VIEW PROJECTS &darr;
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Projects Section -->
+        <section id="projects" class="py-16 md:py-28 bg-titanium-gray">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- 5. Typography: Section Heading in Ceramic Red (Oswald) -->
+                <h2 class="text-4xl font-bold font-heading text-center text-brake-red mb-16">
+                    KEY PERFORMANCE INNOVATIONS
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Project Card 1: Robotics -->
+                    <div class="project-card bg-titanium-dark p-6 text-text-light">
+                        <span class="text-4xl mb-4 block text-brake-red">
+                            <!-- Icon for Robotics -->
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        </span>
+                        <!-- Project Title in White, Hovering to Red is tricky without JS/React, sticking to red on hover via title color -->
+                        <h3 class="text-2xl font-bold font-heading text-text-light mb-2 transition-colors duration-300 hover:text-brake-red">HIGH-SPEED SORTING SUBSYSTEM</h3>
+                        <p class="text-sm font-medium text-brake-red mb-3">Robotics & Vision Optimization</p>
+                        <p class="text-gray-400 mb-4">
+                            Developed a robotic arm with a custom CV system (Python/OpenCV) to sort components with 99.8% accuracy. Achieved a 15% cycle time reduction.
+                        </p>
+                        <div class="space-y-1 text-sm text-gray-300">
+                            <p><strong>Stack:</strong> Python, ROS, C++, Siemens PLC</p>
+                            <a href="#" class="text-brake-red hover:underline font-medium block">VIEW SCHEMATIC &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 2: Software/Data -->
+                    <div class="project-card bg-titanium-dark p-6 text-text-light">
+                         <span class="text-4xl mb-4 block text-brake-red">
+                            <!-- Icon for Monitoring -->
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9.75 17 9.75 17zM19.345 7.62a1 1 0 00-1.34-1.34l-9.33 9.33-2.67-2.67a1 1 0 10-1.34 1.34l3.33 3.33a1 1 0 001.34 0l10-10zM12 21a9 9 0 100-18 9 9 0 000 18z"/></svg>
+                        </span>
+                        <h3 class="text-2xl font-bold font-heading text-text-light mb-2 transition-colors duration-300 hover:text-brake-red">REAL-TIME TELEMETRY DASHBOARD</h3>
+                        <p class="text-sm font-medium text-brake-red mb-3">Real-Time Monitoring & IoT</p>
+                        <p class="text-gray-400 mb-4">
+                            Built a secure web app to visualize data streamed from 50+ sensors, cutting diagnostic time for machine failures by 4 hours through latency reduction.
+                        </p>
+                        <div class="space-y-1 text-sm text-gray-300">
+                            <p><strong>Stack:</strong> React, Node.js, PostgreSQL, AWS IoT</p>
+                            <a href="#" class="text-brake-red hover:underline font-medium block">VIEW REPOSITORY &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 3: Mechanical Design -->
+                    <div class="project-card bg-titanium-dark p-6 text-text-light">
+                        <span class="text-4xl mb-4 block text-brake-red">
+                             <!-- Icon for Thermal Control -->
+                             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        </span>
+                        <h3 class="text-2xl font-bold font-heading text-text-light mb-2 transition-colors duration-300 hover:text-brake-red">HIGH-DENSITY THERMAL CONTROL</h3>
+                        <p class="text-sm font-medium text-brake-red mb-3">FEA & Thermodynamic Analysis</p>
+                        <p class="text-gray-400 mb-4">
+                            Designed and simulated a novel cooling manifold for high-power electronics using SolidWorks and ANSYS FEA, reducing operating temperature by 20%.
+                        </p>
+                        <div class="space-y-1 text-sm text-gray-300">
+                            <p><strong>Stack:</strong> SolidWorks, ANSYS, MATLAB, CFD</p>
+                            <a href="#" class="text-brake-red hover:underline font-medium block">VIEW ANALYSIS REPORT &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to action for full resume -->
+                <div class="mt-20 text-center">
+                    <a href="#" class="cta-button inline-block bg-titanium-dark text-text-light font-bold py-3 px-12 rounded-none shadow-xl text-lg transform hover:scale-[1.02]">
+                        DOWNLOAD DETAILED CV (PDF)
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 4. Section Divider (Dashed/Perforated Line) -->
+        <hr class="border-t border-dashed border-gray-700 mx-auto w-11/12 md:w-4/5" aria-hidden="true">
+
+        <!-- 4. About Section -->
+        <section id="about" class="py-16 md:py-28 bg-titanium-dark">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+                <!-- 5. Typography: Section Heading in Ceramic Red (Oswald) -->
+                <h2 class="text-4xl font-bold font-heading text-center text-brake-red mb-10">
+                    MY FOCUS: PRECISION & PERFORMANCE
+                </h2>
+                <div class="bg-titanium-gray p-8 rounded-none shadow-2xl shadow-black/50 border border-gray-700">
+                    <p class="text-lg leading-relaxed text-gray-300 mb-4">
+                        I am a professional engineer with 7 years of experience in **system integration**, specializing in bridging the gap between mechanical hardware and high-reliability software controls. My passion lies in solving complex, multi-disciplinary problems that drive performance and efficiency gains.
+                    </p>
+                    <p class="text-lg leading-relaxed text-gray-300 mb-4">
+                        My career focus has been on designing systems that are not just technically sound, but also rigorously tested, scalable, and maintainable under extreme operating conditions. I approach every project with the goal of **maximizing output** while minimizing failure points.
+                    </p>
+                    <p class="text-lg leading-relaxed text-gray-300">
+                        Beyond professional work, I engage in open-source projects centered on **real-time data processing** and contribute to the advancement of high-fidelity simulation environments.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Section Divider (Dashed/Perforated Line) -->
+        <hr class="border-t border-dashed border-gray-700 mx-auto w-11/12 md:w-4/5" aria-hidden="true">
+
+        <!-- 5. Contact Section & Footer -->
+        <section id="contact" class="py-16 md:py-28 bg-titanium-gray">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-text-light text-center">
+                <h2 class="text-4xl font-bold font-heading mb-4 text-brake-red">
+                    ACQUIRE MY EXPERTISE
+                </h2>
+                <p class="text-xl font-light text-gray-300 mb-10 max-w-2xl mx-auto">
+                    I am actively seeking new high-impact challenges in advanced engineering and R&D.
+                </p>
+
+                <div class="flex flex-col sm:flex-row justify-center space-y-6 sm:space-y-0 sm:space-x-12">
+                    <div class="flex items-center justify-center space-x-3">
+                        <svg class="w-6 h-6 text-brake-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-2 4v7a2 2 0 01-2 2H5a2 2 0 01-2-2v-7"></path></svg>
+                        <!-- 6. Interactive Link in Red -->
+                        <a href="mailto:john.doe@example.com" class="text-lg hover:text-brake-red transition duration-300">john.doe@example.com</a>
+                    </div>
+                    <div class="flex items-center justify-center space-x-3">
+                        <svg class="w-6 h-6 text-brake-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                        <span class="text-lg text-gray-300">(555) 123-4567</span>
+                    </div>
+                </div>
+
+                <!-- Social/Professional Links -->
+                <div class="mt-12 pt-8 border-t border-gray-700">
+                    <div class="flex justify-center space-x-8">
+                        <!-- 6. Interactive Icons hover to Red -->
+                        <a href="https://linkedin.com/in/johndoe" target="_blank" class="text-text-light hover:text-brake-red transition duration-300">
+                            <!-- LinkedIn Icon -->
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764 0-.974.784-1.764 1.75-1.764 1.764 0 1.75.79 1.75 1.764 0 .974-.784 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.529-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
+                        <a href="https://github.com/johndoe-eng" target="_blank" class="text-text-light hover:text-brake-red transition duration-300">
+                            <!-- GitHub Icon -->
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12 0C5.372 0 0 5.372 0 12c0 5.303 3.438 9.8 8.205 11.385.6.113.82-.262.82-.574 0-.28-.01-1.017-.015-2.004-3.336.724-4.04-1.608-4.04-1.608-.546-1.386-1.332-1.755-1.332-1.755-1.09-.743.083-.728.083-.728 1.205.084 1.838 1.234 1.838 1.234 1.07 1.833 2.809 1.304 3.49.998.108-.775.419-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.467-2.383 1.233-3.224-.124-.302-.535-1.524.118-3.18 0 0 1.006-.323 3.303 1.23.957-.266 1.983-.4 3.003-.404 1.02.004 2.046.138 3.003.404 2.296-1.553 3.302-1.23 3.302-1.23.653 1.656.242 2.878.118 3.18.767.841 1.233 1.914 1.233 3.224 0 4.61-2.805 5.625-5.478 5.922.42.362.812 1.103.812 2.223 0 1.605-.015 2.898-.015 3.291 0 .315.216.69.827.576C20.565 21.801 24 17.33 24 12c0-6.628-5.372-12-12-12z" clip-rule="evenodd"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <p class="text-sm mt-12 text-gray-700">&copy; 2025 Aidan Lee. Engineered for Precision.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- JavaScript for Mobile Menu Functionality -->
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        /**
+         * Toggles the visibility of the mobile navigation menu.
+         */
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Attach the click event listener to the button
+        mobileMenuButton.addEventListener('click', toggleMobileMenu);
+
+        // Simple utility function to handle exponential backoff for a hypothetical API call
+        function base64ToArrayBuffer(base64) {
+            const binary_string = window.atob(base64);
+            const len = binary_string.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binary_string.charCodeAt(i);
+            }
+            return bytes.buffer;
+        }
+    </script>
+</body>
+</html>
