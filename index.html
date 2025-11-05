@@ -1,4 +1,4 @@
-me<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -79,8 +79,8 @@ me<!DOCTYPE html>
         .project-card {
             transition: all 0.3s ease;
             border: 1px solid #333; /* Subtle border for definition */
-            /* Sharp edges */
-            border-radius: 0; 
+            /* Use a slight radius to match images */
+            border-radius: 0.5rem; 
         }
         .project-card:hover {
             border-color: #FF3333; /* Red border on hover */
@@ -166,29 +166,27 @@ me<!DOCTYPE html>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
                     <!-- Project Card 1: Robotics -->
-                    <div class="project-card bg-titanium-dark p-6 text-text-light">
-                        <span class="text-4xl mb-4 block text-brake-red">
-                            <!-- Icon for Robotics -->
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                        </span>
-                        <!-- Project Title in White, Hovering to Red is tricky without JS/React, sticking to red on hover via title color -->
-                        <h3 class="text-2xl font-bold font-heading text-text-light mb-2 transition-colors duration-300 hover:text-brake-red">HIGH-SPEED SORTING SUBSYSTEM</h3>
-                        <p class="text-sm font-medium text-brake-red mb-3">Robotics & Vision Optimization</p>
+                    <div class="project-card bg-titanium-dark p-6 text-text-light rounded-lg">
+                        <!-- Project Image: Placeholder with GitHub path and fallback -->
+                        <img src="./images/WashingMachineIoT.png" 
+                             alt="Image of Washing Machine Monitoring Device" 
+                             class="w-full h-48 object-cover mb-4 rounded-lg border border-gray-700">
+
+                        <h3 class="text-2xl font-bold font-heading text-text-light mb-2 transition-colors duration-300 hover:text-brake-red">Laundromat IoT Usage Monitor</h3>
+                        <p class="text-sm font-medium text-brake-red mb-3">IoT and Product Design</p>
                         <p class="text-gray-400 mb-4">
-                            Developed a robotic arm with a custom CV system (Python/OpenCV) to sort components with 99.8% accuracy. Achieved a 15% cycle time reduction.
+                            Developed a current monitoring system using microcontrollers to keep track of usage, cycles, and availability. Displayed webpage on local network for users.
                         </p>
-                        <div class="space-y-1 text-sm text-gray-300">
-                            <p><strong>Stack:</strong> Python, ROS, C++, Siemens PLC</p>
-                            <a href="#" class="text-brake-red hover:underline font-medium block">VIEW SCHEMATIC &rarr;</a>
-                        </div>
                     </div>
 
                     <!-- Project Card 2: Software/Data -->
-                    <div class="project-card bg-titanium-dark p-6 text-text-light">
-                         <span class="text-4xl mb-4 block text-brake-red">
-                            <!-- Icon for Monitoring -->
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9.75 17 9.75 17zM19.345 7.62a1 1 0 00-1.34-1.34l-9.33 9.33-2.67-2.67a1 1 0 10-1.34 1.34l3.33 3.33a1 1 0 001.34 0l10-10zM12 21a9 9 0 100-18 9 9 0 000 18z"/></svg>
-                        </span>
+                    <div class="project-card bg-titanium-dark p-6 text-text-light rounded-lg">
+                        <!-- Project Image: Placeholder with GitHub path and fallback -->
+                        <img src="./images/project-telemetry.jpg" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/1E1E1E/FF3333?text=Telemetry+Dashboard'" 
+                             alt="Image of Real-Time Telemetry Dashboard" 
+                             class="w-full h-48 object-cover mb-4 rounded-lg border border-gray-700">
+
                         <h3 class="text-2xl font-bold font-heading text-text-light mb-2 transition-colors duration-300 hover:text-brake-red">REAL-TIME TELEMETRY DASHBOARD</h3>
                         <p class="text-sm font-medium text-brake-red mb-3">Real-Time Monitoring & IoT</p>
                         <p class="text-gray-400 mb-4">
@@ -201,11 +199,13 @@ me<!DOCTYPE html>
                     </div>
 
                     <!-- Project Card 3: Mechanical Design -->
-                    <div class="project-card bg-titanium-dark p-6 text-text-light">
-                        <span class="text-4xl mb-4 block text-brake-red">
-                             <!-- Icon for Thermal Control -->
-                             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                        </span>
+                    <div class="project-card bg-titanium-dark p-6 text-text-light rounded-lg">
+                        <!-- Project Image: Placeholder with GitHub path and fallback -->
+                        <img src="./images/project-thermal.jpg" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/1E1E1E/FF3333?text=Thermal+Control+CAD'" 
+                             alt="Image of Thermal Control Manifold CAD" 
+                             class="w-full h-48 object-cover mb-4 rounded-lg border border-gray-700">
+                             
                         <h3 class="text-2xl font-bold font-heading text-text-light mb-2 transition-colors duration-300 hover:text-brake-red">HIGH-DENSITY THERMAL CONTROL</h3>
                         <p class="text-sm font-medium text-brake-red mb-3">FEA & Thermodynamic Analysis</p>
                         <p class="text-gray-400 mb-4">
@@ -218,9 +218,11 @@ me<!DOCTYPE html>
                     </div>
                 </div>
 
-                <!-- Call to action for full resume -->
+                <!-- Call to action for full resume (fixed malformed attributes) -->
                 <div class="mt-20 text-center">
-                    <a href="https://drive.google.com/file/d/1SzhiNZVlXDfxXXHtynl4w-HzS9NYu546/view?usp=sharing"mclass="cta-button inline-block bg-titanium-dark text-text-light font-bold py-3 px-12 rounded-none shadow-xl text-lg transform hover:scale-[1.02]"mtarget="_blank" rel="noopener noreferrer">
+                    <a href="https://drive.google.com/file/d/1SzhiNZVlXDfxXXHtynl4w-HzS9NYu546/view?usp=sharing"
+                       class="cta-button inline-block bg-titanium-dark text-text-light font-bold py-3 px-12 rounded-none shadow-xl text-lg transform hover:scale-[1.02]"
+                       target="_blank" rel="noopener noreferrer">
                         DOWNLOAD DETAILED RESUME (PDF)
                     </a>
                 </div>
